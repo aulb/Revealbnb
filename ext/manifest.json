@@ -1,0 +1,27 @@
+{
+  "name": "Revealbnb: Airbnb True Nightly Price",
+  "version": "1.0.0",
+  "manifest_version": 2,
+  "description": "Reveal the true nightly price for an Airbnb suite with the click of button.",
+  "author": "aulb",
+  "homepage_url": "http://albert.wtf",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png"
+  },
+  "permissions": [
+    "tabs",
+    "https://*.airbnb.com/rooms/*",
+    "https://*.airbnb.ca/rooms/*"
+  ],
+  "browser_action": {
+    "default_icon": {
+      "16": "icons/icon16.png"
+    },
+    "default_title": "Click to reveal true nightly price.",
+    "default_popup": "src/popup.html"
+  },
+  "background": {
+    "scripts": ["src/events.js"]
+  }
+}
