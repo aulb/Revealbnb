@@ -43,7 +43,6 @@ function main(response, state) {
 	} else {
 		error();
 	}
-	// Stop the blinking
 }
 
 function constructGetUrl(baseUrl, queryParams) {
