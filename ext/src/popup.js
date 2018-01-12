@@ -13,11 +13,7 @@ function onPageDetailsReceived(pageDetails) {
 	const endpoint = constructGetUrl(booking_details_endpoint, query_params);
 	xhr.open('GET', endpoint, true);
 	xhr.onreadystatechange = function() {
-		if (xhr.readyState == 4) {
-			updateTruePrice(JSON.parse(xhr.response));
-		} else {
-			error()
-		}
+		main(xhr.response, xhr.readyState);
 	}
 	xhr.send();
 }
@@ -29,7 +25,25 @@ function error() {
 
 function updateTruePrice(response) {
 	const element = document.getElementById('root');
-	element.textContent = getTruePriceOfListing(response);
+	const truePrice = getTruePriceOfListing(response);
+	const currency = getCurrency(response);
+
+	const formatter = new Intl.NumberFormat('en-US', {
+		style: 'currency',
+		currency: currency,
+		minimumFractionDigits: 2,
+	});
+	element.textContent = formatter.format(truePrice);
+	element.className = 'price';
+}
+
+function main(response, state) {
+	if (state == 4) {
+		updateTruePrice(JSON.parse(response));
+	} else {
+		error();
+	}
+	// Stop the blinking
 }
 
 function constructGetUrl(baseUrl, queryParams) {
@@ -45,7 +59,7 @@ function constructGetUrl(baseUrl, queryParams) {
 }
 
 function getTruePriceOfListing(response) {
-	const bookingDetails = response.pdp_listing_booking_details[0]
+	const bookingDetails = response.pdp_listing_booking_details[0];
 	let truePrice = 0;
 	if (bookingDetails.price) {
 		const nights = bookingDetails.nights;
@@ -56,4 +70,9 @@ function getTruePriceOfListing(response) {
 	}
 
 	return truePrice;
+}
+
+function getCurrency(response) {
+	const bookingDetails = response.pdp_listing_booking_details[0];
+	return bookingDetails.p3_display_rate.currency;
 }

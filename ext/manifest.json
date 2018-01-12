@@ -6,8 +6,7 @@
   "author": "aulb",
   "homepage_url": "http://albert.wtf",
   "icons": {
-    "16": "icons/icon16.png",
-    "48": "icons/icon48.png"
+    "16": "icons/icon16.png"
   },
   "permissions": [
     "tabs",

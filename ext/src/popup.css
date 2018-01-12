@@ -1,0 +1,27 @@
+#header {
+	text-align: center;
+	background-color: #fd5c63;
+	border-radius: 2px;
+	color: #fff;
+}
+
+#root {
+	text-align: center;
+	color: rgba(34, 12, 64, 0.75);
+	width: 100%;
+}
+
+.price {
+	color: rgba(34, 12, 64, 0.8);
+	font-size: 1.1em;
+}
+
+body {
+	padding: 5px;
+	font: sans-serif;
+	height: auto;
+	width: 100px;
+	border: 1px solid rgba(34, 12, 64, 0.2);
+	border-spacing: 2px;
+	padding-bottom: 2px;
+}
